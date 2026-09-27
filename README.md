@@ -26,10 +26,13 @@
 
 ```
 TapTapGame/
-├── balance_sim.py           平衡模拟器（待改：军令波次结算＋里程碑模型）
-├── economy.json             当前经济配置（待改：v6 数值 军令340／金128／5阵／4波）
+├── flagline_sim.py          ✅ v6单局模拟器（三档玩家＋三道检查，exit 0）
+├── balance_sim.py           旧放置模拟器（已归档，v6不用）
+├── economy.json             ✅ v6数值（军令340／金128／5阵／4波／精英160）
 └── docs/
     ├── tasks-21day.md         ✅ 21 天任务拆分（T0–T4＋M0–M12制造轮次，v6配套）
+    ├── maker-prompts.md         ✅ 制造对话包（记忆＋M0–M3粘贴文本＋外部基座，T0-3执行中）
+    ├── assets-plan.md           ✅ 美术/音频/体验拆分（U/S/X清单＋工具分工）
     ├── gamejam-21day.md     参赛清单 + 四阶段排期 + 试玩人数获取漏斗
     ├── taptap-compliance.md 合规决策速查（版号/备案/实名/抽成/入驻红线）
     ├── research-idle-genre.md  品类研究报告（旧方向放置模拟经营，已归档）
@@ -89,8 +92,9 @@ python3 balance_sim.py --dump-schema                    # 看配置字段
 
 - [x] 写 `docs/design-final.md`（v6 混合定稿：warpath 经济＋只读阵图＋审计 8 补丁）
 - [x] 写 `docs/tasks-21day.md`（T0–T4＋M0–M12 制造轮次）
-- [ ] 把 `economy.json` 改成 v6 数值（军令 340／金 128／波次等效血／5 阵）
-- [ ] 给 `balance_sim.py` 加波次结算＋里程碑军令模型，验 340 达成率＋破釜 10–30%＋波 4 裸打必败
+- [x] T0-2 数值冻结：`economy.json` v6＋`flagline_sim.py` 三道检查全过（340/必败/破釜定性）
+- [ ] T0-3 制造探路：按 `docs/maker-prompts.md` 跑 M0–M3＋外部 7 张基座图
+- [ ] T0-1 开发者入驻＋占位页（手动）／T0-4 日志号＋试玩群（手动）
 - [ ] 主题公布后 24h 内做换皮对齐修订
 - [ ] 提交 TapTap 认证开发者入驻（个人主体免营业执照，审核 1-3 工作日）
 - [ ] 建 TapTap 游戏页面（占位也行，聚光灯与报名都要 URL）
