@@ -1,35 +1,49 @@
 {
-  "name": "循环工厂 · 空间有限型放置",
-  "tick_s": 1.0,
-  "start": { "废料": 40, "零件": 0, "成品": 0 },
-  "space": 8,
-  "cost_growth": 1.22,
-  "generators": [
-    { "id": "g1", "name": "回收臂", "out": { "废料": 1.2 },
-      "cost": { "废料": 12 }, "space": 1, "unlock": 0 },
-    { "id": "g2", "name": "冲压机", "out": { "零件": 0.5 },
-      "cost": { "废料": 70 }, "space": 2, "unlock": 60 },
-    { "id": "g3", "name": "注塑台", "out": { "零件": 0.15, "成品": 0.08 },
-      "cost": { "零件": 45, "废料": 150 }, "space": 3, "unlock": 400 },
-    { "id": "g4", "name": "总装线", "out": { "成品": 0.35 },
-      "cost": { "零件": 220, "成品": 40 }, "space": 4, "unlock": 2500 },
-    { "id": "g5", "name": "自动仓储", "out": { "废料": 0.6, "零件": 0.3, "成品": 0.15 },
-      "cost": { "成品": 450, "零件": 600 }, "space": 5, "unlock": 12000 }
+  "name": "旗令防线 v6 · 180s 单局数值",
+  "duration_s": 180,
+  "junling_cap": 200,
+  "junling_order_cost": 60,
+  "tap_order_cost": 80,
+  "flags_hand_cap": 6,
+  "flags_start": { "red": 1, "blue": 1, "yellow": 1 },
+  "waves": [
+    { "id": 1, "at_s": 0,   "enemies": { "zabing": 8 }, "settle": 30, "bonus": 0,
+      "bonus_cond": "教学波无条件" },
+    { "id": 2, "at_s": 55,  "enemies": { "zabing": 6, "bingjia": 2 }, "settle": 30, "bonus": 30,
+      "bonus_cond": ">=1 冰甲被蒸汽/暴击击杀" },
+    { "id": 3, "at_s": 100, "enemies": { "fengqun": 30, "zhongjia": 2 }, "settle": 30, "bonus": 40,
+      "bonus_cond": "蜂群全歼且漏怪<=2" },
+    { "id": 4, "at_s": 135, "enemies": { "zabing": 12, "jingying": 1 }, "settle": 30, "bonus": 50,
+      "bonus_cond": "精英死且基地存活", "aibing_stamina_pct": 0.5 }
   ],
-  "upgrades": [
-    { "id": "u1", "name": "扩地平台", "cost": { "废料": 200 }, "unlock": 150, "max_level": 999999,
-      "effect": { "space": 3 } },
-    { "id": "u2", "name": "精密轴承", "cost": { "零件": 60 }, "unlock": 300, "max_level": 12,
-      "effect": { "cost_red": { "废料": 0.06, "零件": 0.06 } } },
-    { "id": "u3", "name": "热处理炉", "cost": { "成品": 120 }, "unlock": 1200, "max_level": 10,
-      "effect": { "mult_res": { "成品": 1.35 } } },
-    { "id": "u4", "name": "自动上料", "cost": { "零件": 400, "成品": 150 }, "unlock": 6000, "max_level": 15,
-      "effect": { "mult": 1.18 } },
-    { "id": "u5", "name": "精密校准", "cost": { "成品": 800 }, "unlock": 20000, "max_level": 8,
-      "effect": { "cost_red": { "成品": 0.08 } } },
-    { "id": "u6", "name": "流水线校准", "cost": { "成品": 300 }, "unlock": 30000, "max_level": 999999,
-      "effect": { "cost_red": { "废料": 0.02, "零件": 0.02, "成品": 0.02 } } }
+  "enemies": {
+    "zabing":   { "hp": 6,  "bounty": 1,  "drop_flag": null },
+    "bingjia":  { "hp": 24, "bounty": 6,  "resist": 0.8,  "drop_flag": "red" },
+    "fengqun":  { "hp": 3,  "bounty": 1,  "drop_flag": "blue" },
+    "zhongjia": { "hp": 72, "bounty": 10, "resist": 0.5,  "drop_flag": "yellow" },
+    "jingying": { "hp": 160, "bounty": 15, "resist": 0.3, "bounty_settle_extra": 25, "drop_flag": "yellow" }
+  },
+  "milestones": [
+    { "combo": 25,  "junling": 30 },
+    { "combo": 50,  "junling": 30 },
+    { "combo": 100, "junling": 40 }
   ],
-  "prestige": { "name": "重整产线", "unlock": 200000, "gain_mult": 0.10 },
-  "milestones": [150, 800, 3000, 12000, 50000, 200000]
+  "troops": {
+    "daodun":  { "hp": 30, "dps": 2, "cost": 20, "start": 2, "max": 4 },
+    "shenji":  { "hp": 10, "dps": 4, "cost": 30, "start": 1, "max": 4 },
+    "chiho":   { "hp": 8,  "dps": 0, "cost": 30, "start": 1, "max": 2, "flag_per_25s": 1 }
+  },
+  "team_cap": 8,
+  "formations": {
+    "fengshi":  { "code": ["red", "red"],     "junling": 60, "duration": 20 },
+    "huanxing": { "code": ["blue", "blue"],   "junling": 60, "duration": 20 },
+    "yuanyang": { "code": ["red", "blue"],    "junling": 60, "duration": 20 },
+    "yanxing":  { "code": ["red", "yellow"],  "junling": 60, "duration": 20 },
+    "yulin":    { "code": ["blue", "yellow"], "junling": 60, "duration": 20 }
+  },
+  "god_orders": {
+    "kongcheng": { "code": ["blue", "blue", "blue"],       "junling": 60 },
+    "caochuan":  { "code": ["yellow", "yellow", "yellow"], "junling": 60 },
+    "huoshao":   { "code": ["red", "red", "red"],          "junling": 60 }
+  }
 }
